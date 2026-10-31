@@ -16,7 +16,7 @@ https://app.prodhub.in/mcp
 ```
 
 ProdHub is described for machine discovery in [server.json](./server.json) and
-published under `io.github.swadeshitech/prodhub` in the official MCP Registry.
+published under `io.github.SwaDeshiTech/prodhub` in the official MCP Registry.
 MCP clients and registry-backed catalogs can use that entry to discover the
 hosted Streamable HTTP endpoint without relying on a general web search.
 

@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.swadeshitech/prodhub",
+  "name": "io.github.SwaDeshiTech/prodhub",
   "title": "ProdHub Application Delivery",
   "description": "Deploy and diagnose applications in governed Kubernetes Preview Spaces through authenticated MCP.",
   "repository": {
