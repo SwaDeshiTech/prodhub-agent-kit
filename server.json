@@ -7,7 +7,7 @@
     "url": "https://github.com/SwaDeshiTech/prodhub-agent-kit",
     "source": "github"
   },
-  "version": "0.5.0",
+  "version": "0.6.0",
   "remotes": [
     {
       "type": "streamable-http",
