@@ -51,9 +51,11 @@ Use the remote-server entry in [mcp.json](./mcp.json), then copy or merge
 3. Approve the consent screen.
 4. Ask the coding harness to deploy a branch or create a Preview Space.
 
-The agent should begin with `get_prodhub_delivery_capabilities`, inspect the
-repository and the `prodhub_build` contract, show a plan, obtain approval, and
-then create resources.
+The agent should begin with `get_prodhub_delivery_capabilities`, call
+`list_available_product_areas`, inspect the repository
+and the `prodhub_build` contract, show a plan, obtain approval, and then create
+resources. The product-area response is filtered by the same role-based tab
+configuration used by the ProdHub UI and does not require organization selection.
 
 Read the full workflow in [docs/preview-delivery.md](./docs/preview-delivery.md).
 

@@ -10,6 +10,8 @@ deployment profiles, inspect pipeline status, or diagnose a delivery failure,
 use the `prodhub` MCP server.
 
 - Start with `get_prodhub_delivery_capabilities`.
+- Call `list_available_product_areas` and stay
+  within the role-filtered product areas returned by the server.
 - Inspect the current repository and call `get_prodhub_build_pipeline_contract`
   before preparing BUILD profile values.
 - Use only source-backed configuration. In particular, validate `.dockerignore`,
