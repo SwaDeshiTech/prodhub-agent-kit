@@ -15,6 +15,11 @@ The canonical remote MCP endpoint is:
 https://app.prodhub.in/mcp
 ```
 
+ProdHub is described for machine discovery in [server.json](./server.json) and
+published under `io.github.swadeshitech/prodhub` in the official MCP Registry.
+MCP clients and registry-backed catalogs can use that entry to discover the
+hosted Streamable HTTP endpoint without relying on a general web search.
+
 ### Codex
 
 ```bash
@@ -92,6 +97,7 @@ schemas; cloning this repository alone does not register the MCP server.
 
 ## Files
 
+- [server.json](./server.json): official MCP Registry metadata for the hosted server.
 - [mcp.json](./mcp.json): portable remote-MCP configuration.
 - [AGENTS.md](./AGENTS.md): Codex-oriented project instructions.
 - [CLAUDE.md](./CLAUDE.md): Claude Code project instructions.
@@ -99,3 +105,10 @@ schemas; cloning this repository alone does not register the MCP server.
 - [docs/preview-delivery.md](./docs/preview-delivery.md): safe delivery workflow.
 
 For the browser setup page, see [prodhub.in/setup](https://prodhub.in/setup).
+
+## Publishing discovery metadata
+
+The `Publish MCP Registry metadata` GitHub workflow validates and publishes
+`server.json` using GitHub OIDC. No registry token or long-lived secret is
+required. Increment the manifest version whenever the public MCP identity or
+tool contract changes; merging that update to `main` republishes the entry.
