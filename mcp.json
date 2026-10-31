@@ -3,7 +3,24 @@
   "mcpServers": {
     "prodhub": {
       "type": "streamable-http",
-      "url": "https://app.prodhub.in/mcp"
+      "url": "https://app.prodhub.in/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "resource": "https://app.prodhub.in/mcp",
+            "client": {
+              "mode": "dcr"
+            },
+            "authorizationUrl": "https://app.prodhub.in/mcp/authorize",
+            "tokenUrl": "https://app.prodhub.in/mcp/token",
+            "registrationUrl": "https://app.prodhub.in/mcp/register",
+            "baseScopes": [
+              "prodhub:mcp"
+            ]
+          }
+        }
+      }
     }
   }
 }

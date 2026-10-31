@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">ProdHub</title>
+  <desc id="description">ProdHub application delivery mark</desc>
+  <defs>
+    <linearGradient id="background" x1="64" y1="32" x2="448" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#667EEA"/>
+      <stop offset="1" stop-color="#1E3C72"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#background)"/>
+  <path d="M154 372V140h116c72 0 119 40 119 104 0 65-47 106-119 106h-54v22h-62Zm62-80h50c38 0 60-17 60-48 0-30-22-46-60-46h-50v94Z" fill="#FFFFFF"/>
+  <circle cx="390" cy="122" r="20" fill="#8EF0FF"/>
+  <circle cx="422" cy="176" r="12" fill="#8EF0FF"/>
+  <path d="m388 142 25 24" stroke="#8EF0FF" stroke-width="10" stroke-linecap="round"/>
+</svg>

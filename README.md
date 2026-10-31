@@ -44,6 +44,29 @@ project file.
 Use the remote-server entry in [mcp.json](./mcp.json), then copy or merge
 [CLAUDE.md](./CLAUDE.md) into the project guidance file used by your client.
 
+### ChatGPT and Codex plugin
+
+This repository is also a portable Agent Plugins package:
+
+- `plugin.json` contains the public listing, onboarding, review, and publication metadata.
+- `mcp.json` declares the remote ProdHub MCP server and OAuth with dynamic client registration.
+- `skills/get-started/SKILL.md` supplies the post-install setup and safe-delivery workflow.
+- `assets/prodhub-icon.svg` is the square directory and composer icon.
+
+Generate the ZIP to upload in the OpenAI Plugins submission portal:
+
+```bash
+./scripts/package-chatgpt-plugin.sh
+```
+
+Before final submission, record a reviewer-accessible walkthrough and add its URL
+to `extensions.com.openai.review.demo_recording_url` in `plugin.json`. Enter the
+dedicated test-account credentials only in the secure review form; never commit
+them to this repository.
+
+Follow the complete [ChatGPT submission checklist](./docs/chatgpt-submission.md)
+for the review fixture, domain verification, upload, and publication steps.
+
 ## First connection
 
 1. Add the MCP endpoint in the client.
@@ -101,6 +124,9 @@ schemas; cloning this repository alone does not register the MCP server.
 
 - [server.json](./server.json): official MCP Registry metadata for the hosted server.
 - [mcp.json](./mcp.json): portable remote-MCP configuration.
+- [plugin.json](./plugin.json): ChatGPT and Codex public plugin metadata.
+- [skills/get-started/SKILL.md](./skills/get-started/SKILL.md): plugin onboarding workflow.
+- [docs/chatgpt-submission.md](./docs/chatgpt-submission.md): public directory submission checklist.
 - [AGENTS.md](./AGENTS.md): Codex-oriented project instructions.
 - [CLAUDE.md](./CLAUDE.md): Claude Code project instructions.
 - [GEMINI.md](./GEMINI.md): Gemini CLI project instructions.
