@@ -74,6 +74,10 @@ for the review fixture, domain verification, upload, and publication steps.
 3. Approve the consent screen.
 4. Ask the coding harness to deploy a branch or create a Preview Space.
 
+To disconnect, use the MCP client's remove/disconnect action. ProdHub advertises
+an OAuth token-revocation endpoint, so compatible clients can invalidate their
+access or refresh token immediately instead of waiting for expiry.
+
 The agent should begin with `get_prodhub_delivery_capabilities`, call
 `list_available_product_areas`, inspect the repository
 and the `prodhub_build` contract, show a plan, obtain approval, and then create
