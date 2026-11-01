@@ -3,6 +3,17 @@
 Give any MCP-compatible coding harness a safe, repeatable path from source code
 to a ProdHub Preview Space.
 
+The hosted server also exposes named operations for the authenticated user's
+role-visible ProdHub areas. Agents discover these through
+`list_available_product_areas` and `list_product_operations`, then execute only
+returned operation IDs through `execute_product_operation`. Arbitrary backend
+paths are not accepted, writes require explicit confirmation, and normal
+Gateway ACL plus ProdHub ownership checks still apply. Cloud Resources, Cloud
+Snapshot, and Snapshot History are intentionally not exposed through MCP.
+The MCP transport and every tool operation use the same path, method, and role
+ACL policy as their equivalent ProdHub HTTP APIs; an unconfigured operation is
+denied by default.
+
 This kit does not contain credentials. ProdHub uses browser-based OAuth, scopes
 each session to the approved organization, and applies the same role controls as
 the product UI.

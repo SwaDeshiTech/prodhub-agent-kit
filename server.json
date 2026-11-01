@@ -7,7 +7,7 @@
     "url": "https://github.com/SwaDeshiTech/prodhub-agent-kit",
     "source": "github"
   },
-  "version": "0.7.3",
+  "version": "0.8.0",
   "remotes": [
     {
       "type": "streamable-http",
@@ -25,7 +25,8 @@
         "build and deployment profiles",
         "Kubernetes Preview Spaces",
         "pipeline monitoring and diagnosis",
-        "read-only container inspection"
+        "read-only container inspection",
+        "role-filtered product operations"
       ]
     }
   }
