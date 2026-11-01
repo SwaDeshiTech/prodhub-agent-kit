@@ -78,6 +78,18 @@ To disconnect, use the MCP client's remove/disconnect action. ProdHub advertises
 an OAuth token-revocation endpoint, so compatible clients can invalidate their
 access or refresh token immediately instead of waiting for expiry.
 
+An authorized agent can also call `list_access_credentials` to review the
+user's browser sessions, MCP sessions, and generated API tokens. It must show
+the exact credential and obtain explicit confirmation before calling
+`revoke_access_credential`; the server independently verifies ownership and
+never returns bearer-token values.
+
+For a normal application build, use `list_applications`,
+`list_application_profiles`, and `get_application_profile` to resolve the exact
+BUILD profile. Show the selected repository, profile, and immutable commit SHA;
+after explicit approval call `trigger_build`, then poll the returned execution
+with `get_pipeline_execution`.
+
 The agent should begin with `get_prodhub_delivery_capabilities`, call
 `list_available_product_areas`, inspect the repository
 and the `prodhub_build` contract, show a plan, obtain approval, and then create
