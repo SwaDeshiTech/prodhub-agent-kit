@@ -108,6 +108,9 @@ resources. The product-area response is filtered by the same role-based tab
 configuration used by the ProdHub UI and does not require organization selection.
 
 Read the full workflow in [docs/preview-delivery.md](./docs/preview-delivery.md).
+For Helm charts maintained with application source, also read
+[docs/runtime-templates.md](./docs/runtime-templates.md) before creating or
+updating a runtime template.
 
 ## Understand the product before deploying
 
@@ -158,6 +161,7 @@ schemas; cloning this repository alone does not register the MCP server.
 - [CLAUDE.md](./CLAUDE.md): Claude Code project instructions.
 - [GEMINI.md](./GEMINI.md): Gemini CLI project instructions.
 - [docs/preview-delivery.md](./docs/preview-delivery.md): safe delivery workflow.
+- [docs/runtime-templates.md](./docs/runtime-templates.md): runtime-template parameters and repository-hosted Helm charts.
 
 For the browser setup page, see [prodhub.in/setup](https://prodhub.in/setup).
 

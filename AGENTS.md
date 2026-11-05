@@ -2,7 +2,8 @@
 
 Before delivery work, read [the end-to-end runbook](docs/preview-delivery.md).
 Use [product concepts](docs/product-concepts.md), [profile fields](docs/profile-fields.md),
-and [failure recovery](docs/failure-recovery.md) for supporting detail.
+[runtime templates](docs/runtime-templates.md), and [failure recovery](docs/failure-recovery.md)
+for supporting detail.
 When copying these instructions to another project, copy these docs or replace
 the links with https://github.com/SwaDeshiTech/prodhub-agent-kit/tree/main/docs.
 
@@ -17,17 +18,21 @@ pipeline, or diagnose a build/deployment failure.
 3. For Jenkins builds, call `get_prodhub_build_pipeline_contract` before deriving profile values.
 4. Inspect the checked-out repository. Use repository evidence, not guessed ports,
    commands, framework outputs, or credentials.
-5. For new applications, propose onboarding before creating records. The
+5. Before creating or updating a runtime template, call
+   `get_runtime_template_contract`. For a repository-hosted Helm chart, verify
+   `Chart.yaml` and use a repository-relative chart path. Inherit application
+   SCM/repository/commit unless the user explicitly requests an override.
+6. For new applications, propose onboarding before creating records. The
    `plan_application_preview` tool requires an existing application and profiles.
    Use it before provisioning a uniquely resolved pair; show an equivalent plan
    for an explicitly selected pair.
-6. Proceed within the user's authorized scope. Ask for approval when it is
+7. Proceed within the user's authorized scope. Ask for approval when it is
    missing or the scope changes; do not ask again for an unchanged approved plan.
-7. After approval, call `provision_application_preview`, then poll
+8. After approval, call `provision_application_preview`, then poll
    `get_preview_delivery_status`. Verify the current pipeline and application
    response: an allocated URL does not prove readiness. Retain operation IDs
    and inspect partial success before retrying.
-8. On failure, call `summarize_pipeline_failure` when the tool is available and
+9. On failure, call `summarize_pipeline_failure` when the tool is available and
    present only sanitized evidence and the recommended corrective action.
 
 Never request, write, display, or commit infrastructure credentials. Do not use

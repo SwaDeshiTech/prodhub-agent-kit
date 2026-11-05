@@ -1,9 +1,11 @@
 # ProdHub delivery instructions
 
 Read [the full Preview Space runbook](docs/preview-delivery.md) before delivery.
-Refer to [product concepts](docs/product-concepts.md), [profile fields](docs/profile-fields.md),
-and [failure recovery](docs/failure-recovery.md). Copy these docs with this file,
-or use https://github.com/SwaDeshiTech/prodhub-agent-kit/tree/main/docs.
+Refer to [product concepts](docs/product-concepts.md),
+[profile fields](docs/profile-fields.md),
+[runtime templates](docs/runtime-templates.md), and
+[failure recovery](docs/failure-recovery.md). Copy these docs with this file, or
+use https://github.com/SwaDeshiTech/prodhub-agent-kit/tree/main/docs.
 
 When a user asks to deploy, create a preview environment, configure build or
 deployment profiles, inspect pipeline status, or diagnose a delivery failure,
@@ -16,6 +18,9 @@ use the `prodhub` MCP server.
   before preparing BUILD profile values.
 - Use only source-backed configuration. In particular, validate `.dockerignore`,
   runtime profile scripts, artifact paths, and listening ports.
+- Call `get_runtime_template_contract` before changing runtime templates. Verify
+  repository Helm chart paths and inherit the application SCM and exact commit
+  unless an override is explicitly required.
 - For new apps, propose onboarding first: the planner requires saved profiles.
   Call `plan_application_preview` for an existing pair and show the result.
   Use existing user authorization for the agreed scope; ask when it is missing
