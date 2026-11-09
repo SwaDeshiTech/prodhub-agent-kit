@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "prodhub",
-  "version": "0.7.1",
-  "description": "Plan, provision, monitor, and diagnose governed Kubernetes Preview Spaces through ProdHub.",
+  "version": "0.8.0",
+  "description": "Plan, provision, monitor, and manage governed Kubernetes Preview Spaces and capacity through ProdHub.",
   "author": {
     "name": "SwaDeshiTech",
     "url": "https://prodhub.in"
@@ -21,7 +21,7 @@
       "interface": {
         "displayName": "ProdHub",
         "shortDescription": "Deploy apps to Preview Spaces",
-        "longDescription": "Connect ChatGPT to your ProdHub account to discover applications and delivery profiles, prepare governed deployment plans, create expiring Kubernetes Preview Spaces after approval, monitor build and deployment pipelines, and diagnose failures. ProdHub respects the connected user's roles and resource access. It cannot deploy unpushed local changes or expose provider credentials.",
+        "longDescription": "Connect ChatGPT to your ProdHub account to discover applications and delivery profiles, prepare governed deployment plans, create expiring Kubernetes Preview Spaces after approval, manage role-visible Kubernetes cluster groups and allocation rules, monitor build and deployment pipelines, and diagnose failures. ProdHub respects the connected user's roles and resource access. It cannot deploy unpushed local changes, expose Cloud Resources inventory through MCP, or reveal provider credentials.",
         "developerName": "SwaDeshiTech",
         "category": "Developer Tools",
         "capabilities": [
@@ -29,7 +29,8 @@
           "Plan Preview Space delivery",
           "Create expiring Preview Spaces",
           "Monitor build and deployment pipelines",
-          "Diagnose delivery failures"
+          "Diagnose delivery failures",
+          "Manage Kubernetes capacity rules"
         ],
         "websiteURL": "https://prodhub.in",
         "supportURL": "https://prodhub.in/contact",
@@ -38,7 +39,8 @@
         "defaultPrompt": [
           "Show the ProdHub product areas available to me.",
           "Prepare a one-day Preview Space plan for my application.",
-          "Check my latest Preview Space delivery and explain any failure."
+          "Check my latest Preview Space delivery and explain any failure.",
+          "Show the Kubernetes cluster groups and allocation rules available to me."
         ],
         "brandColor": "#1E3C72",
         "brandColorDark": "#8EA6FF",
@@ -66,6 +68,12 @@
               "prompt": "Show my available Preview Space templates and summarize what each contains.",
               "tools_triggered": "list_preview_space_templates",
               "expected_behavior": "List accessible templates and summarize their services, lifetime, DNS, and inbound-traffic configuration from tool output."
+            },
+            {
+              "description": "Discover Resource Manager without exposing cloud inventory.",
+              "prompt": "Show the Kubernetes cluster groups and allocation rules I can manage.",
+              "tools_triggered": "get_resource_manager_contract, list_available_product_areas, list_product_operations, execute_product_operation",
+              "expected_behavior": "List only role-visible cluster groups and allocation rules through allowlisted read operations, and do not expose Cloud Resources inventory."
             },
             {
               "description": "Prepare a delivery plan without creating resources.",
@@ -103,7 +111,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Initial ChatGPT and Codex public plugin package for role-aware application discovery, Preview Space planning and provisioning, pipeline monitoring, and failure diagnosis."
+        "release_notes": "Adds role-aware Resource Manager guidance for Kubernetes cluster groups and allocation rules while keeping Cloud Resources inventory excluded."
       }
     }
   }

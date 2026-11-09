@@ -14,6 +14,13 @@ The MCP transport and every tool operation use the same path, method, and role
 ACL policy as their equivalent ProdHub HTTP APIs; an unconfigured operation is
 denied by default.
 
+Resource Manager is a first-class governed workflow. Agents call
+`get_resource_manager_contract`, confirm the relevant role-visible tabs, and
+discover Kubernetes cluster-group and allocation-rule operations through
+`list_product_operations`. The complete sequence and field definitions are in
+[the Resource Manager runbook](./docs/resource-manager.md). Cloud Resources
+inventory remains intentionally excluded from MCP.
+
 This kit does not contain credentials. ProdHub uses browser-based OAuth, scopes
 each session to the approved organization, and applies the same role controls as
 the product UI.
@@ -108,6 +115,11 @@ resources. The product-area response is filtered by the same role-based tab
 configuration used by the ProdHub UI and does not require organization selection.
 
 Read the full workflow in [docs/preview-delivery.md](./docs/preview-delivery.md).
+For Helm charts maintained with application source, also read
+[docs/runtime-templates.md](./docs/runtime-templates.md) before creating or
+updating a runtime template.
+For cluster placement and workload-capacity rules, read
+[docs/resource-manager.md](./docs/resource-manager.md).
 
 ## Understand the product before deploying
 
@@ -128,6 +140,7 @@ These guides describe the current implementation; the connected server's
 - “Deploy this repository's feature/login branch to a new Preview Space for one day.”
 - “Reuse the existing catalog application's profiles and give me a verified preview URL.”
 - “Check why this Preview Space failed, fix the configuration, and retry in the same environment.”
+- “Show the Kubernetes cluster groups I can manage and prepare an allocation rule for Preview Spaces.”
 
 The agent should retain the application, profile, environment, and execution IDs
 returned by tools. Users should not have to discover these IDs manually.
@@ -158,6 +171,8 @@ schemas; cloning this repository alone does not register the MCP server.
 - [CLAUDE.md](./CLAUDE.md): Claude Code project instructions.
 - [GEMINI.md](./GEMINI.md): Gemini CLI project instructions.
 - [docs/preview-delivery.md](./docs/preview-delivery.md): safe delivery workflow.
+- [docs/runtime-templates.md](./docs/runtime-templates.md): runtime-template parameters and repository-hosted Helm charts.
+- [docs/resource-manager.md](./docs/resource-manager.md): safe Kubernetes cluster-group and allocation-rule management.
 
 For the browser setup page, see [prodhub.in/setup](https://prodhub.in/setup).
 

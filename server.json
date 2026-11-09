@@ -2,12 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.SwaDeshiTech/prodhub",
   "title": "ProdHub Application Delivery",
-  "description": "Deploy and diagnose applications in governed Kubernetes Preview Spaces through authenticated MCP.",
+  "description": "Deploy applications and manage governed Kubernetes Preview Spaces and capacity through authenticated MCP.",
   "repository": {
     "url": "https://github.com/SwaDeshiTech/prodhub-agent-kit",
     "source": "github"
   },
-  "version": "0.8.0",
+  "version": "0.9.0",
   "remotes": [
     {
       "type": "streamable-http",
@@ -26,6 +26,7 @@
         "Kubernetes Preview Spaces",
         "pipeline monitoring and diagnosis",
         "read-only container inspection",
+        "Kubernetes Resource Manager",
         "role-filtered product operations"
       ]
     }
