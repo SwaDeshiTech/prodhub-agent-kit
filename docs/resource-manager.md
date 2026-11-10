@@ -1,4 +1,4 @@
-# Resource Manager: cluster placement and capacity rules
+# Resource Manager: template-driven cluster placement
 
 Use Resource Manager when the user wants to group Kubernetes clusters or decide
 which capacity should run Preview Spaces and AI Studio workspaces. Resource
@@ -13,7 +13,6 @@ role-visible response contains `/dashboard/resourceManager` and the required
 child area:
 
 - `/dashboard/resourceManager/k8sClusterGroups`
-- `/dashboard/resourceManager/allocationRules`
 
 Tab visibility is discovery guidance, not authorization by itself. Every request
 still passes through the Gateway ACL and ProdHub ownership/access checks. Do not
@@ -31,11 +30,11 @@ MCP. Do not approximate cloud inventory access with another tool or operation.
 {"product_area_link":"/dashboard/resourceManager"}
 ```
 
-3. Read existing cluster groups and allocation rules through only the operation
-   IDs returned by that call. Resolve group, organization, and cluster IDs from
+3. Read existing cluster groups and pipeline templates through only the operation
+   IDs returned by that call. Resolve template, organization, and cluster IDs from
    authorized ProdHub discovery; do not ask the user to type opaque IDs.
-4. Prepare the smallest complete change. Show its name, scope, workload type,
-   cluster group, scheduling behavior, priority, and active state.
+4. Prepare the smallest complete change. Show its name, scope, workload types,
+   pipeline templates, clusters, scheduling behavior, priority, and active state.
 5. Obtain explicit user approval immediately before create, update, or delete.
 6. Call `execute_product_operation` with the exact returned operation ID. Set
    `confirmed` to `true` only after approval.
@@ -53,15 +52,16 @@ A confirmed write has this shape:
 
 ```json
 {
-  "operation_id":"create_resource_allocation_rule",
+  "operation_id":"create_k8s_cluster_group",
   "body":{
     "name":"Preview capacity",
-    "description":"Route Preview Spaces to the approved cluster pool",
-    "clusterGroupId":"<resolved-cluster-group-id>",
-    "organizationId":"<resolved-organization-id>",
-    "workloadType":"EPHEMERAL_ENVIRONMENT",
+    "description":"Run Preview Space pipelines on the approved cluster pool",
+    "clusterIds":["<resolved-cluster-id>"],
+    "pipelineTemplateIds":["<resolved-pipeline-template-id>"],
+    "schedulingStrategy":"RESOURCE_BASED",
+    "workloadTypes":["EPHEMERAL_ENVIRONMENT"],
     "priority":10,
-    "active":true
+    "isActive":true
   },
   "confirmed":true
 }
@@ -80,6 +80,7 @@ the supported fields currently include:
 | `name` | Required human-readable group name |
 | `description` | Optional capacity and purpose explanation |
 | `clusterIds` | Connected Kubernetes cluster IDs selected through ProdHub |
+| `pipelineTemplateIds` | Required pipeline templates whose workloads use the group |
 | `schedulingStrategy` | `RESOURCE_BASED` or `ROUND_ROBIN` |
 | `priority` | Non-negative ordering value |
 | `isActive` | Whether the group can receive workloads |
@@ -90,24 +91,19 @@ allocation may stop matching it. Do not claim that changing the group migrates
 already-running workloads unless a returned tool explicitly provides that
 behavior.
 
-## Resource allocation rules
+Allocation is template-driven: a workload is eligible for a group only when all
+pipeline templates used by that workload are mapped to the group. When more than
+one eligible group exists, priority and the selected scheduling strategy decide
+which capacity is evaluated first. Always resolve template and cluster IDs from
+authorized reads rather than accepting opaque IDs from the user.
 
-An allocation rule maps a workload type to a cluster group. The supported fields
-currently include:
-
-| Field | Meaning |
-| --- | --- |
-| `name` | Required rule name |
-| `description` | Optional explanation of when the rule applies |
-| `clusterGroupId` | Required existing cluster-group ID |
-| `organizationId` | Optional organization-specific scope |
-| `workloadType` | `EPHEMERAL_ENVIRONMENT` or `AI_WORKSPACE` |
-| `priority` | Non-negative evaluation priority |
-| `active` | Whether the rule participates in allocation |
-
-Always list groups first so the selected `clusterGroupId` is valid and visible.
-When the user does not specify organization scope or priority, explain the
-choice instead of silently broadening access or precedence.
+For Preview Spaces, Resource Manager is an override of the Kubernetes cluster
+already selected by the deployment profile. If no active mapping applies to the
+pipeline template, workload type, and organization, ProdHub falls back to the
+deployment-profile cluster. If an applicable mapping exists but its clusters
+lack capacity or are unavailable, allocation fails instead of bypassing the
+configured policy. AI workspaces have no deployment-profile fallback and
+therefore require an applicable Resource Manager mapping.
 
 ## Safe failure handling
 

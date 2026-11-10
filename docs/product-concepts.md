@@ -15,8 +15,7 @@
 | Pipeline execution | Record of stages, steps and status | Multiple executions can belong to one Preview Space |
 | Release candidate | Built artifact/version selected for deployment | May be reused when explicitly supported |
 | AI workspace | Interactive coding runtime | Separate from ordinary build-and-deploy preview delivery |
-| Kubernetes cluster group | Scheduling pool of connected Kubernetes clusters | Supports selected workload types and a resource-based or round-robin strategy |
-| Resource allocation rule | Role-governed placement rule for a workload type | Routes Preview Space or AI Studio workloads to a cluster group, optionally for one organization |
+| Kubernetes cluster group | Optional scheduling override containing connected Kubernetes clusters | Maps pipeline templates and workload types to a resource-based or round-robin capacity pool; Preview Spaces fall back to their deployment-profile cluster when no mapping applies |
 
 ProdHub supplies organization defaults and orchestrates delivery; a coding agent
 supplies user intent and verified source-derived settings. MCP runs through
@@ -34,7 +33,7 @@ or make a build succeed automatically.
 - Empty environment requested: create_ephemeral_environment is appropriate.
 - Failed delivery: inspect execution, diagnose, correct the cause, retry deliberately.
 - Resource placement: read `get_resource_manager_contract`, discover current
-  cluster groups and allocation rules, propose the exact change, and obtain
+  cluster groups and their pipeline-template mappings, propose the exact change, and obtain
   approval immediately before executing a returned write operation.
 
 ## Current limits

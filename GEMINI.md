@@ -15,7 +15,7 @@ Use the `prodhub` MCP server for application delivery and Preview Space work.
    propose workflows from the returned role-filtered product areas.
 3. For Resource Manager work, read `get_resource_manager_contract`, then call
    `list_product_operations` for `/dashboard/resourceManager`. Read existing
-   cluster groups and allocation rules before proposing a change, and obtain
+   cluster groups and pipeline templates before proposing a change, and obtain
    explicit approval before a write. Cloud Resources is excluded from MCP.
 4. Inspect source files before setting profile fields. For Jenkins, call
    `get_prodhub_build_pipeline_contract` and follow its field definitions.
