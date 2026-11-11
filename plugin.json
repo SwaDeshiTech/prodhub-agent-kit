@@ -111,7 +111,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Replaces legacy allocation rules with pipeline-template mappings on Kubernetes cluster groups, with deployment-profile fallback when no Preview Space mapping applies."
+        "release_notes": "Replaces legacy allocation rules with pipeline-template mappings on Kubernetes cluster groups, with deployment-profile fallback for Preview Spaces and standard deployments when no mapping applies."
       }
     }
   }

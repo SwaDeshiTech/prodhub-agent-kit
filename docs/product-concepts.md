@@ -15,7 +15,7 @@
 | Pipeline execution | Record of stages, steps and status | Multiple executions can belong to one Preview Space |
 | Release candidate | Built artifact/version selected for deployment | May be reused when explicitly supported |
 | AI workspace | Interactive coding runtime | Separate from ordinary build-and-deploy preview delivery |
-| Kubernetes cluster group | Optional scheduling override containing connected Kubernetes clusters | Maps pipeline templates and workload types to a resource-based or round-robin capacity pool; Preview Spaces fall back to their deployment-profile cluster when no mapping applies |
+| Kubernetes cluster group | Optional scheduling override containing connected Kubernetes clusters | Maps pipeline templates and workload types to a resource-based or round-robin capacity pool; Preview Spaces and standard deployments fall back to their deployment-profile cluster when no mapping applies |
 
 ProdHub supplies organization defaults and orchestrates delivery; a coding agent
 supplies user intent and verified source-derived settings. MCP runs through

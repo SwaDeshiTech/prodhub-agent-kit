@@ -97,7 +97,7 @@ one eligible group exists, priority and the selected scheduling strategy decide
 which capacity is evaluated first. Always resolve template and cluster IDs from
 authorized reads rather than accepting opaque IDs from the user.
 
-For Preview Spaces, Resource Manager is an override of the Kubernetes cluster
+For Preview Spaces and standard deployments, Resource Manager is an override of the Kubernetes cluster
 already selected by the deployment profile. If no active mapping applies to the
 pipeline template, workload type, and organization, ProdHub falls back to the
 deployment-profile cluster. If an applicable mapping exists but its clusters
